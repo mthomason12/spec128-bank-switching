@@ -14,5 +14,7 @@ It can probably be done *much* better (and I welcome code patches and pull reque
 trying to figure things out after not touching C for 20 years and not writing code on a Spectrum for 
 more than 30 years (and back then all I did was BASIC).
 
-Original Repo location at https://github.com/
+And finally, you'll notice there's a "0" printed at the top left.  The value returned from the "main" function always does this on a .sna, but not on a .tap.  No idea why.
+
+Original Repo location at https://github.com/mthomason12/spec128-bank-switching
 

@@ -8,6 +8,8 @@
 * And to Robin Verhagen-Guest for pointing me at that repo.
 */
 
+
+
 #ifdef __SPECTRUM
 #include <arch/zx.h>
 #include <arch/zx/esxdos.h>
@@ -23,9 +25,10 @@
 #include "bank3.h"
 #include "bank4.h"
 #include "bank6.h"
+//#include "structs.h"
 
 //start our code at 0x6000, which is as low as I'm confident we can go
-//Yeah, yeah, moan at me about it being contended.
+//Yeah, yeah, moan at me about it being contended memory
 #pragma output CRT_ORG_CODE = 0x6000
 
 //function prototypes
@@ -34,12 +37,23 @@ uint8_t switchBank(uint8_t destBank);
 void execFar(void (*fn)(void), uint8_t destBank);
 void execFarUint16(void (*fn)(uint16_t), uint16_t i16, uint8_t destBank);
 
+typedef struct dataStruct {
+  char dataString[21];
+  int dataNum;
+};
+
+
 /**
  * Main routine
 */
 int main(void) {
   uint8_t prevbank;
+  struct dataStruct data;
   char testString[] = "This string came from our main code.\n";
+  //yes, I could puts the rows without parameters rather than printf, but it felt like 
+  //thislook cleaner.
+  printf("Bank Switching Test\n");  
+  printf("\n");    
   printf("Here we are in the main code segment.  We're not bank switching yet.\n");
   printf("Switching in bank 1.\n");
   prevbank = switchBank(1); 
@@ -47,8 +61,19 @@ int main(void) {
   printf("Calling a function in bank 3.\n");
   execFar(bank3function,3);
   printf("That was cooler.  But we can do more!\n");
+  printf("Press any key.\n");
+  in_wait_key();  
   printf("Calling a function in bank 4 with a parameter of 24.\n");
   execFarUint16(bank4function,24,4);  
+  printf("We've got more. Press any key.\n");
+  in_wait_key();
+  printf("Calling a function in bank 4 and passing it a pointer to a struct that contains the string 'hello world' and the number 44.\n");  
+  strcpy(data.dataString, "hello world");
+  data.dataNum = 44;
+  execFarUint16(bank6function,&data,6); 
+  printf("We got back the string %s and the number $d",data.dataString,data.dataNum);
+  printf("Press any key to terminate, and ignore the 0 that gets printed, that's just the return value of main().\n");
+  in_wait_key();  
   return 0;
 }
 

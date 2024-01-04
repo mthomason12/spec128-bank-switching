@@ -1,0 +1,16 @@
+{
+    "window.autoDetectColorScheme": false,
+    "workbench.colorTheme": "Visual Studio Light",
+    "cmake.configureOnOpen": false,
+    "makefile.makefilePath": ".\\Makefile",
+    "makefile.makePath": "make.exe",
+    "files.associations": {
+        "string.h": "c",
+        "stdlib.h": "c",
+        "memory.h": "c",
+        "input.h": "c",
+        "sktypes.h": "c",
+        "esxdos.h": "c",
+        "zxn.h": "c"
+    }
+}

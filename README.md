@@ -1,4 +1,4 @@
-#Spectrum 128K Memory Banking Example
+# Spectrum 128K Memory Banking Example
 
 Using C, compiled with Z88DK with -clib=sdcc_iy
 

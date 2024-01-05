@@ -1,4 +1,4 @@
-# Spectrum 128K Memory Banking Example
+# Spectrum 128K Memory Bank Switching Example
 
 Using C, compiled with Z88DK with -clib=sdcc_iy
 Tested using ZEsarUX v.X (24/09/2023) set to Sinclair ZX Spectrum+ 128k
@@ -14,6 +14,8 @@ Read the comments in each file - including the Makefile - to see how it works.
 It can probably be done *much* better (and I welcome code patches and pull requests), but this is me 
 trying to figure things out after not touching C for 20 years and not writing code on a Spectrum for 
 more than 30 years (and back then all I did was BASIC).
+
+I used the proportional font mode just because I think it looks neat.
 
 And finally, you'll notice there's a "0" printed at the top left.  The value returned from the "main" function always does this on a .sna, but not on a .tap.  No idea why.
 

@@ -3,7 +3,7 @@
 Using C, compiled with Z88DK with -clib=sdcc_iy
 Tested using ZEsarUX v.X (24/09/2023) set to Sinclair ZX Spectrum+ 128k
 
-It should run fine on a +2.  The +2A/+3 differ slightly in which banks are contended, but as long as you're not doing anything timing-critical it should work on those too.
+It should run fine on a +2.  The +2A/+3 differ slightly in which banks are contended, but as long as you're not doing anything timing-critical it should work on those too.  I've started on making it work on the Next, too, but that's a work in progress.
 
 This doesn't use any neat compiler tricks like the classic lib does with __banked, but instead does the bank switching manually where you can see it.
 

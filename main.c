@@ -52,7 +52,7 @@ int main(void) {
   char testString[] = "This string came from our main code.\n";
 
   //yes, I could puts the rows without parameters rather than printf, but it felt like 
-  //thislook cleaner.
+  //this look cleaner.
   printf("Bank Switching Test\n");  
   printf("\n");    
   printf("Here we are in the main code segment.  We're not bank switching yet.\n");
@@ -73,6 +73,7 @@ int main(void) {
   printf("Calling a function in bank 4 and passing it a pointer to a struct that contains the string 'hello world' and the number 44.\n");  
   strcpy(data.dataString, "hello world");
   data.dataNum = 44;
+  //Cast the pointers to uint16_t.  Or you could add code for execFarPointer if you prefer.
   execFarUint16((void(*)(uint16_t))bank6function,(uint16_t)&data,6); 
   printf("We got back the string %s and the number %d\n",data.dataString,data.dataNum);
   printf("Press any key to terminate, and ignore the 0 that gets printed, that's just the return value of main().\n");

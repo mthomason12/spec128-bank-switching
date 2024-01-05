@@ -26,7 +26,10 @@ endif
 
 
 all: 
-#First, make our banked binaries
+#First, make our banked binaries.  The command line ensures these get marked with the correct
+#segments for when the final compile assembles these all into the .sna
+#You'll end up with a .bin for each of these too, which you can load manually if you're not
+#making a .sna
 	$(CC) $(CFLAGS) -o bank3.o bank3.c --codesegBANK_3 --constsegBANK_3 --datasegBANK_3 -c 
 	$(CC) $(CFLAGS) -o bank4.o bank4.c --codesegBANK_4 --constsegBANK_4 --datasegBANK_4 -c 
 	$(CC) $(CFLAGS) -o bank6.o bank6.c --codesegBANK_6 --constsegBANK_6 --datasegBANK_6 -c 

@@ -2,6 +2,11 @@
 #include <string.h>
 #include "structs.h"
 
+/**
+ * Oh look! There's a variable in bank 6!.  You could pass a pointer to this back to the
+ * main code, but bear in mind you can only use it while this is the currently switched-in
+ * bank.
+ */
 unsigned char bankedDataString[20] = "Thank you!";
 
 void bank6function(void *dataPtr)

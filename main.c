@@ -21,26 +21,26 @@
 #include <input.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "paging.h"
 #include "bank3.h"
 #include "bank4.h"
 #include "bank6.h"
-//#include "structs.h"
+#include "structs.h"
+
+//function declarations
+int main(void);
+uint8_t switchBank(uint8_t destBank);
+void execFar(void (*fn)(void), uint8_t destBank);
+void execFarUint16(void (*fn)(uint16_t), uint16_t i16, uint8_t destBank);
+void clearScreen(void);
 
 //start our code at 0x6000, which is as low as I'm confident we can go
 //Yeah, yeah, moan at me about it being contended memory
 #pragma output CRT_ORG_CODE = 0x6000
 
-//function prototypes
-int main(void);
-uint8_t switchBank(uint8_t destBank);
-void execFar(void (*fn)(void), uint8_t destBank);
-void execFarUint16(void (*fn)(uint16_t), uint16_t i16, uint8_t destBank);
-
-typedef struct dataStruct {
-  char dataString[21];
-  int dataNum;
-};
+//control code for placing the cursor
+#define PRINT_AT_CR    "\x16%c%c"
 
 
 /**
@@ -50,6 +50,7 @@ int main(void) {
   uint8_t prevbank;
   struct dataStruct data;
   char testString[] = "This string came from our main code.\n";
+
   //yes, I could puts the rows without parameters rather than printf, but it felt like 
   //thislook cleaner.
   printf("Bank Switching Test\n");  
@@ -63,18 +64,26 @@ int main(void) {
   printf("That was cooler.  But we can do more!\n");
   printf("Press any key.\n");
   in_wait_key();  
+  clearScreen();
   printf("Calling a function in bank 4 with a parameter of 24.\n");
   execFarUint16(bank4function,24,4);  
   printf("We've got more. Press any key.\n");
   in_wait_key();
+  clearScreen();
   printf("Calling a function in bank 4 and passing it a pointer to a struct that contains the string 'hello world' and the number 44.\n");  
   strcpy(data.dataString, "hello world");
   data.dataNum = 44;
-  execFarUint16(bank6function,&data,6); 
-  printf("We got back the string %s and the number $d",data.dataString,data.dataNum);
+  execFarUint16((void(*)(uint16_t))bank6function,(uint16_t)&data,6); 
+  printf("We got back the string %s and the number %d\n",data.dataString,data.dataNum);
   printf("Press any key to terminate, and ignore the 0 that gets printed, that's just the return value of main().\n");
   in_wait_key();  
+  clearScreen();
   return 0;
+}
+
+void clearScreen() {
+  zx_cls(PAPER_WHITE);
+  printf(PRINT_AT_CR,1,1);
 }
 
 /**
@@ -133,4 +142,6 @@ void execFarUint16(void (*fn)(uint16_t), uint16_t i16, uint8_t destBank) {
     switchBank(destBank);
     fn(i16);
 }
+
+
 

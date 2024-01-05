@@ -7,7 +7,7 @@ BUILDDIR=build
 OBJLIST=bank3.o bank4.o bank6.o
 
 CC=zcc
-CFLAGS=+zx -vn -m -startup=0 -clib=sdcc_iy  
+CFLAGS=+zx -vn -m -startup=9 -clib=sdcc_iy  
 
 #Handle different commands on Windows
 ifeq ($(OS),Windows_NT)

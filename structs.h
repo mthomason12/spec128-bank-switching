@@ -1,9 +1,13 @@
 #ifndef EXAMPLE_STRUCTS_H
 #define EXAMPLE_STRUCTS_H
 
-typedef struct dataStruct {
+#include <stdio.h>
+
+struct dataStruct 
+{
     char dataString[21];
     int dataNum;
 };
+
 
 #endif

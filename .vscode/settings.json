@@ -11,6 +11,7 @@
         "input.h": "c",
         "sktypes.h": "c",
         "esxdos.h": "c",
-        "zxn.h": "c"
+        "zxn.h": "c",
+        "stdio.h": "c"
     }
 }

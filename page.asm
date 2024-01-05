@@ -1,6 +1,8 @@
 ; Paging for address spaces for the Spectrum 128
 ;
 ; We've named address spaces after the banks for clarity
+;
+; Based on https://github.com/z88dk/z88dk/blob/master/examples/named-address-spaces/page.asm
 
 SECTION code_user
 

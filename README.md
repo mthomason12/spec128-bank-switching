@@ -1,6 +1,7 @@
 # Spectrum 128K Memory Banking Example
 
 Using C, compiled with Z88DK with -clib=sdcc_iy
+Tested using ZEsarUX v.X (24/09/2023) set to Sinclair ZX Spectrum+ 128k
 
 This doesn't use any neat compiler tricks like the classic lib does with __banked,
 but instead does the bank switching manually where you can see it.
